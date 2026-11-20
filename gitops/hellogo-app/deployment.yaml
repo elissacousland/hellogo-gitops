@@ -5,7 +5,7 @@ metadata:
   name: hello-deployment
 
 spec:
-  replicas: 2                 # Создаём 2 Pod
+  replicas: 4                 # Создаём 2 Pod
   selector:
     matchLabels:
       app: hello
