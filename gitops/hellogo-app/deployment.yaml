@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: hello-deployment
+
+spec:
+  replicas: 2                 # Создаём 2 Pod
+  selector:
+    matchLabels:
+      app: hello
+
+  template:
+    metadata:
+      labels:
+        app: hello
+
+    spec:
+      containers:
+        - name: hello
+          image: ghcr.io/borisovscloud/devops2079/hellogo:latest
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
+
+          env:
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: hello-secret
+                  key: username
